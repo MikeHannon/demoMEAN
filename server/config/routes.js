@@ -15,4 +15,5 @@ var Whatever = require('./../controllers/examples.js');
 // returns whatever comes after the equals sign!
 module.exports = function(app){
   app.get('/something', Whatever.index);
+  app.post('/something', Whatever.create);
 };

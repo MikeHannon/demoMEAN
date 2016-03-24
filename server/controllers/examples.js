@@ -32,12 +32,23 @@ module.exports =
         res.json(err);
         return
       }
-      console.log(data[0].name); //
-      // data[0].name = data[0].name; 
+      //console.log(data[0].name); //
+      // data[0].name = data[0].name;
       res.json(data);
     });
   },
-  create:function(req,res){},
+  create:function(req,res){
+    console.log(req.body, "I GOT HERE");
+    var thingToSave = new OurModelAccessPoint(req.body);
+    thingToSave.save(function(err,data){
+      if (err){
+        res.json(err);
+        return
+      }
+      console.log(data);
+      res.json(data);
+    });
+  },
   update:function(req,res){},
   delete:function(req,res){},
   show:function(req,res){},

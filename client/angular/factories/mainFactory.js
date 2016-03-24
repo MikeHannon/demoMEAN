@@ -17,10 +17,25 @@ app.factory('mainFactory', ['$http', function($http) {
   mainFactoryObject.index = function(callbackFromController){
     callbackFromController('before http request');
     $http.get('/something').then(function(dataFromDB){
-      // console.log(dataFromDB);
       callbackFromController(dataFromDB.data);
     });
     callbackFromController('after http request starts');
+  }
+  mainFactoryObject.create = function(){
+    $http.post('/something', {name:'God'}).then(function(stuffFromDB){
+      console.log(stuffFromDB);
+      if (stuffFromDB.data.errors){
+        console.log('other errros, like name too short')
+        console.log(stuffFromDB.data.errors);
+      }
+      if (stuffFromDB.data.errmsg){
+        console.log('name not unique')
+        console.log(stuffFromDB.data.errmsg);
+      }
+      else {
+        // good data
+      }
+    });
   }
   return mainFactoryObject;
 }]);

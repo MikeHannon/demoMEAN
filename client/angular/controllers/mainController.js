@@ -13,6 +13,7 @@ app.controller('mainController', [
   function($scope, mainFactory) {
     $scope.dbResponse;
     mainFactory.index(myRandomThing);
+    mainFactory.create();
     // into scope of controller
     function myRandomThing(data){
       console.log(data);
